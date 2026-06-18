@@ -1,0 +1,801 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Maliha — Public Health Researcher & Data Analyst</title>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Nunito+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --cream: #FBF8F3;
+  --warm-white: #FFFDF9;
+  --sand: #F0EBE3;
+  --tan: #D5CBBC;
+  --clay: #B8A99A;
+  --earth: #8B7D6B;
+  --bark: #5C5346;
+  --deep: #3A352E;
+  --terracotta: #C67B5C;
+  --terracotta-light: #E8A88C;
+  --sage: #7D9B82;
+  --sage-light: #B5CFBA;
+  --sage-pale: #E8F0E9;
+  --sky: #7BA3B8;
+  --sky-light: #B8D4E3;
+  --honey: #D4A94B;
+  --honey-light: #F0DBA8;
+  --radius: 14px;
+  --shadow-sm: 0 1px 3px rgba(58,53,46,0.06);
+  --shadow-md: 0 4px 16px rgba(58,53,46,0.08);
+  --shadow-lg: 0 12px 40px rgba(58,53,46,0.1);
+  --shadow-hover: 0 8px 30px rgba(58,53,46,0.13);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Nunito Sans', sans-serif;
+  background: var(--cream);
+  color: var(--deep);
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ─── ANIMATIONS ─── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-6px); }
+}
+@keyframes wave {
+  0% { transform: rotate(0deg); }
+  10% { transform: rotate(14deg); }
+  20% { transform: rotate(-8deg); }
+  30% { transform: rotate(14deg); }
+  40% { transform: rotate(-4deg); }
+  50% { transform: rotate(10deg); }
+  60% { transform: rotate(0deg); }
+  100% { transform: rotate(0deg); }
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1), transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ─── NAV ─── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  background: rgba(251,248,243,0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(213,203,188,0.4);
+  transition: box-shadow 0.3s;
+}
+nav.scrolled { box-shadow: 0 2px 20px rgba(58,53,46,0.08); }
+.nav-inner {
+  max-width: 1000px; margin: 0 auto; padding: 14px 32px;
+  display: flex; justify-content: space-between; align-items: center;
+}
+.nav-logo {
+  font-family: 'Lora', serif; font-size: 18px; font-weight: 700; color: var(--deep);
+  text-decoration: none; letter-spacing: -0.02em;
+}
+.nav-logo span { color: var(--terracotta); }
+.nav-links { display: flex; gap: 28px; list-style: none; }
+.nav-links a {
+  text-decoration: none; color: var(--earth); font-size: 13px; font-weight: 600;
+  letter-spacing: 0.04em; text-transform: uppercase;
+  transition: color 0.2s; position: relative;
+}
+.nav-links a::after {
+  content: ''; position: absolute; bottom: -4px; left: 0; width: 0;
+  height: 2px; background: var(--terracotta); border-radius: 1px;
+  transition: width 0.25s ease;
+}
+.nav-links a:hover { color: var(--terracotta); }
+.nav-links a:hover::after { width: 100%; }
+
+/* ─── HERO ─── */
+.hero {
+  padding: 140px 32px 80px; max-width: 1000px; margin: 0 auto;
+  display: grid; grid-template-columns: 1fr 300px; gap: 60px; align-items: center;
+}
+.hero-text { animation: fadeUp 0.8s ease both; }
+.hero-wave {
+  display: inline-block; font-size: 32px; margin-bottom: 12px;
+  animation: wave 2.5s ease-in-out infinite;
+  transform-origin: 70% 70%;
+}
+.hero h1 {
+  font-family: 'Lora', serif; font-size: 44px; font-weight: 700;
+  line-height: 1.2; letter-spacing: -0.02em; color: var(--deep);
+  margin-bottom: 8px;
+}
+.hero h1 em {
+  font-style: italic; color: var(--terracotta); font-weight: 500;
+}
+.hero-subtitle {
+  font-size: 17px; color: var(--earth); margin-bottom: 24px;
+  font-weight: 400; line-height: 1.6;
+}
+.hero-cta {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 12px 28px; border-radius: 50px; border: none;
+  background: var(--deep); color: var(--cream);
+  font-size: 14px; font-weight: 600; font-family: 'Nunito Sans', sans-serif;
+  text-decoration: none; cursor: pointer;
+  transition: all 0.25s ease;
+  box-shadow: 0 4px 16px rgba(58,53,46,0.2);
+}
+.hero-cta:hover {
+  background: var(--terracotta);
+  box-shadow: 0 6px 24px rgba(198,123,92,0.3);
+  transform: translateY(-2px);
+}
+.hero-avatar {
+  animation: fadeUp 0.8s 0.15s ease both;
+  display: flex; justify-content: center; align-items: center;
+}
+.avatar-frame {
+  width: 260px; height: 260px; border-radius: 50%;
+  background: linear-gradient(135deg, var(--sage-pale) 0%, var(--sand) 50%, rgba(232,168,140,0.2) 100%);
+  display: flex; align-items: center; justify-content: center;
+  position: relative;
+  box-shadow: 0 12px 40px rgba(125,155,130,0.15);
+}
+.avatar-frame::before {
+  content: ''; position: absolute; inset: -8px; border-radius: 50%;
+  border: 2px dashed var(--tan); opacity: 0.5;
+  animation: float 4s ease-in-out infinite;
+}
+.avatar-emoji {
+  font-size: 100px; line-height: 1;
+  filter: drop-shadow(0 4px 8px rgba(0,0,0,0.1));
+}
+
+/* ─── SECTIONS ─── */
+.section {
+  padding: 80px 32px; max-width: 1000px; margin: 0 auto;
+}
+.section-label {
+  font-size: 11px; font-weight: 800; text-transform: uppercase;
+  letter-spacing: 0.12em; color: var(--terracotta);
+  margin-bottom: 8px; display: flex; align-items: center; gap: 10px;
+}
+.section-label::after {
+  content: ''; flex: 1; height: 1px; background: var(--tan); max-width: 60px;
+}
+.section-title {
+  font-family: 'Lora', serif; font-size: 32px; font-weight: 700;
+  color: var(--deep); margin-bottom: 16px; letter-spacing: -0.02em;
+}
+.section-desc {
+  font-size: 15px; color: var(--earth); max-width: 600px;
+  line-height: 1.7; margin-bottom: 40px;
+}
+
+/* ─── ABOUT ─── */
+.about-content {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 32px;
+}
+.about-card {
+  background: var(--warm-white); border-radius: var(--radius);
+  padding: 28px; border: 1px solid var(--sand);
+  box-shadow: var(--shadow-sm);
+  transition: all 0.3s ease;
+}
+.about-card:hover {
+  box-shadow: var(--shadow-md); border-color: var(--tan);
+  transform: translateY(-2px);
+}
+.about-icon {
+  font-size: 28px; margin-bottom: 14px; display: block;
+}
+.about-card h3 {
+  font-family: 'Lora', serif; font-size: 18px; font-weight: 600;
+  color: var(--deep); margin-bottom: 8px;
+}
+.about-card p {
+  font-size: 14px; color: var(--earth); line-height: 1.65;
+}
+
+/* ─── PROJECTS ─── */
+.projects-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 24px;
+}
+.project-card {
+  background: var(--warm-white); border-radius: var(--radius);
+  border: 1px solid var(--sand); overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  transition: all 0.3s ease;
+  display: flex; flex-direction: column;
+}
+.project-card:hover {
+  box-shadow: var(--shadow-hover); border-color: var(--tan);
+  transform: translateY(-3px);
+}
+.project-color {
+  height: 6px; width: 100%;
+}
+.project-body {
+  padding: 24px 24px 20px; flex: 1; display: flex; flex-direction: column;
+}
+.project-status {
+  display: inline-flex; align-items: center; gap: 5px;
+  font-size: 10px; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 0.08em; padding: 3px 10px; border-radius: 20px;
+  margin-bottom: 12px; width: fit-content;
+}
+.status-complete { background: var(--sage-pale); color: var(--sage); }
+.status-progress { background: #FFF3E0; color: #E09940; }
+.status-planned { background: var(--sky-light); color: var(--sky); }
+.project-card h3 {
+  font-family: 'Lora', serif; font-size: 18px; font-weight: 600;
+  color: var(--deep); margin-bottom: 8px; line-height: 1.4;
+}
+.project-card p {
+  font-size: 13px; color: var(--earth); line-height: 1.6;
+  margin-bottom: 16px; flex: 1;
+}
+.project-tags {
+  display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 16px;
+}
+.project-tag {
+  font-size: 11px; padding: 3px 10px; border-radius: 20px;
+  background: var(--sand); color: var(--bark); font-weight: 600;
+}
+.project-link {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: 13px; font-weight: 700; color: var(--terracotta);
+  text-decoration: none; transition: gap 0.2s;
+}
+.project-link:hover { gap: 10px; }
+.project-link .arrow { transition: transform 0.2s; }
+.project-link:hover .arrow { transform: translateX(2px); }
+
+/* ─── SKILLS ─── */
+.skills-layout {
+  display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px;
+}
+.skill-group {
+  background: var(--warm-white); border-radius: var(--radius);
+  padding: 24px; border: 1px solid var(--sand);
+  box-shadow: var(--shadow-sm);
+  transition: all 0.3s ease;
+}
+.skill-group:hover {
+  box-shadow: var(--shadow-md); transform: translateY(-2px);
+}
+.skill-group-icon { font-size: 24px; margin-bottom: 10px; }
+.skill-group h3 {
+  font-family: 'Lora', serif; font-size: 15px; font-weight: 600;
+  color: var(--deep); margin-bottom: 12px;
+}
+.skill-items { display: flex; flex-wrap: wrap; gap: 6px; }
+.skill-item {
+  font-size: 12px; padding: 4px 12px; border-radius: 20px;
+  font-weight: 600; transition: all 0.2s;
+}
+.skill-item:hover { transform: scale(1.05); }
+.skill-data { background: var(--sage-pale); color: var(--sage); }
+.skill-tools { background: #FFF3E0; color: #D4920E; }
+.skill-domain { background: rgba(123,163,184,0.15); color: var(--sky); }
+
+/* ─── WRITING ─── */
+.writing-grid {
+  display: flex; flex-direction: column; gap: 20px;
+}
+.writing-card {
+  background: var(--warm-white); border-radius: var(--radius);
+  padding: 24px 28px; border: 1px solid var(--sand);
+  box-shadow: var(--shadow-sm); transition: all 0.3s ease;
+  display: flex; gap: 24px; align-items: flex-start;
+}
+.writing-card:hover {
+  box-shadow: var(--shadow-hover); border-color: var(--tan);
+  transform: translateY(-2px);
+}
+.writing-accent {
+  width: 4px; min-height: 60px; border-radius: 4px; flex-shrink: 0;
+  background: linear-gradient(180deg, var(--terracotta), var(--terracotta-light));
+}
+.writing-content { flex: 1; }
+.writing-card h3 {
+  font-family: 'Lora', serif; font-size: 17px; font-weight: 600;
+  color: var(--deep); margin-bottom: 4px; line-height: 1.4;
+}
+.writing-series {
+  font-size: 11px; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 0.06em; color: var(--terracotta); margin-bottom: 8px;
+}
+.writing-card p {
+  font-size: 13px; color: var(--earth); line-height: 1.6; margin-bottom: 14px;
+}
+.writing-meta {
+  display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
+}
+.writing-tag {
+  font-size: 11px; padding: 3px 10px; border-radius: 20px;
+  background: var(--sand); color: var(--bark); font-weight: 600;
+}
+.writing-date {
+  font-size: 11px; color: var(--clay); font-weight: 500;
+}
+.writing-link {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: 13px; font-weight: 700; color: var(--terracotta);
+  text-decoration: none; transition: gap 0.2s; margin-top: 12px;
+}
+.writing-link:hover { gap: 10px; }
+
+/* ─── HOBBIES ─── */
+.hobbies-grid {
+  display: flex; flex-wrap: wrap; gap: 16px;
+}
+.hobby-card {
+  background: var(--warm-white); border-radius: 50px;
+  padding: 14px 24px; border: 1px solid var(--sand);
+  display: flex; align-items: center; gap: 10px;
+  box-shadow: var(--shadow-sm);
+  transition: all 0.3s ease; cursor: default;
+}
+.hobby-card:hover {
+  box-shadow: var(--shadow-md); transform: translateY(-2px);
+  border-color: var(--tan);
+}
+.hobby-emoji { font-size: 22px; }
+.hobby-text {
+  font-size: 14px; font-weight: 600; color: var(--bark);
+}
+
+/* ─── CONTACT ─── */
+.contact-section {
+  background: var(--deep); border-radius: 20px;
+  padding: 60px 48px; margin: 0 32px 80px;
+  max-width: 936px; margin-left: auto; margin-right: auto;
+  text-align: center; position: relative; overflow: hidden;
+}
+.contact-section::before {
+  content: ''; position: absolute; top: -60px; right: -60px;
+  width: 200px; height: 200px; border-radius: 50%;
+  background: rgba(198,123,92,0.1);
+}
+.contact-section::after {
+  content: ''; position: absolute; bottom: -40px; left: -40px;
+  width: 150px; height: 150px; border-radius: 50%;
+  background: rgba(125,155,130,0.08);
+}
+.contact-section .section-label { color: var(--terracotta-light); justify-content: center; }
+.contact-section .section-label::after { background: rgba(213,203,188,0.3); }
+.contact-section .section-title { color: var(--cream); }
+.contact-section .section-desc { color: var(--clay); margin: 0 auto 36px; }
+.contact-links {
+  display: flex; justify-content: center; gap: 16px; flex-wrap: wrap;
+  position: relative; z-index: 1;
+}
+.contact-btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 12px 24px; border-radius: 50px;
+  font-size: 14px; font-weight: 600; text-decoration: none;
+  font-family: 'Nunito Sans', sans-serif;
+  transition: all 0.25s ease;
+}
+.contact-primary {
+  background: var(--terracotta); color: var(--cream);
+  box-shadow: 0 4px 16px rgba(198,123,92,0.3);
+}
+.contact-primary:hover {
+  background: var(--terracotta-light); color: var(--deep);
+  transform: translateY(-2px);
+}
+.contact-secondary {
+  background: rgba(255,255,255,0.1); color: var(--cream);
+  border: 1px solid rgba(255,255,255,0.15);
+}
+.contact-secondary:hover {
+  background: rgba(255,255,255,0.18); transform: translateY(-2px);
+}
+
+/* ─── FOOTER ─── */
+footer {
+  text-align: center; padding: 24px 32px 32px;
+  font-size: 12px; color: var(--clay);
+}
+
+/* ─── RESPONSIVE ─── */
+@media (max-width: 768px) {
+  .hero { grid-template-columns: 1fr; gap: 40px; padding: 120px 24px 60px; text-align: center; }
+  .hero-avatar { order: -1; }
+  .avatar-frame { width: 180px; height: 180px; }
+  .avatar-emoji { font-size: 70px; }
+  .hero h1 { font-size: 32px; }
+  .hero-subtitle { font-size: 15px; }
+  .section { padding: 60px 24px; }
+  .section-title { font-size: 26px; }
+  .about-content { grid-template-columns: 1fr; }
+  .projects-grid { grid-template-columns: 1fr; }
+  .skills-layout { grid-template-columns: 1fr; }
+  .nav-links { gap: 16px; }
+  .nav-links a { font-size: 11px; }
+  .contact-section { padding: 40px 24px; margin: 0 16px 60px; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav">
+  <div class="nav-inner">
+    <a href="#" class="nav-logo">M<span>.</span></a>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#writing">Writing</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#hobbies">Interests</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-text">
+    <span class="hero-wave">👋</span>
+    <h1>Hi, I'm <em>Maliha</em></h1>
+    <p class="hero-subtitle">
+      Public Health Researcher translating data and research into scalable, equity-driven solutions that address the socioeconomic drivers of community health.
+    </p>
+    <a href="#projects" class="hero-cta">See my work <span>↓</span></a>
+  </div>
+  <div class="hero-avatar">
+    <div class="avatar-frame">
+      <!-- Replace this emoji with your headshot: <img src="your-photo.jpg" style="width:100%;height:100%;object-fit:cover;border-radius:50%"> -->
+      <span class="avatar-emoji">👩‍💻</span>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="section" id="about">
+  <div class="reveal">
+    <div class="section-label">About me</div>
+    <h2 class="section-title">Researcher at heart, community in focus</h2>
+    <p class="section-desc">
+      I'm a public health researcher at the University of Michigan's Youth Violence Prevention Center, where I lead qualitative and mixed-methods research, program evaluation, and research communications across CDC-funded initiatives. With an MPH in Health Policy from The George Washington University and a background spanning global health at the Gates Foundation to community-level violence prevention, I bring a cross-sector perspective to health equity work.
+    </p>
+  </div>
+  <div class="about-content reveal">
+    <div class="about-card">
+      <span class="about-icon">🔬</span>
+      <h3>Research Focus</h3>
+      <p>Youth violence prevention, socioeconomic determinants of health, and community-engaged research. My work bridges multiple sites and communities — from youth advisory boards in Muskegon and Washington, D.C. to county-level health data across 3,000 U.S. counties.</p>
+    </div>
+    <div class="about-card">
+      <span class="about-icon">📊</span>
+      <h3>Analytical Approach</h3>
+      <p>I work across both quantitative and qualitative methods — from regression modeling and data visualization in R to thematic analysis of youth narratives and community interviews. I believe the strongest insights come from combining the two.</p>
+    </div>
+    <div class="about-card">
+      <span class="about-icon">🌱</span>
+      <h3>Currently Building</h3>
+      <p>Expanding my data analysis portfolio with projects in R, Quarto, and Shiny. Developing research communications that translate complex findings for broader audiences. Exploring doctoral study for Fall 2027.</p>
+    </div>
+    <div class="about-card">
+      <span class="about-icon">💡</span>
+      <h3>Why It Matters</h3>
+      <p>Health outcomes are shaped by the systems and communities people live in. I want to make that visible — through data, through community voice, and through research that informs more equitable solutions.</p>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section class="section" id="projects">
+  <div class="reveal">
+    <div class="section-label">Featured projects</div>
+    <h2 class="section-title">Work I'm proud of</h2>
+    <p class="section-desc">
+      A curated collection of projects exploring complex public health challenges through qualitative and quantitative research. Many of these studies are actively contributing to ongoing publications.
+    </p>
+  </div>
+  <div class="projects-grid reveal">
+
+    <!-- Project 1 -->
+    <div class="project-card">
+      <div class="project-color" style="background: linear-gradient(90deg, var(--sage), var(--sage-light))"></div>
+      <div class="project-body">
+        <span class="project-status status-complete">● Complete</span>
+        <h3>County Health Rankings: Socioeconomic Factors & Health Outcomes</h3>
+        <p>Explored how county-level socioeconomic factors like income, insurance coverage, education, and unemployment predict premature mortality across ~3,000 U.S. counties using the 2025 County Health Rankings data. Built a full analysis pipeline in R covering data wrangling, exploratory visualization, multiple linear regression, and reproducible reporting with Quarto.</p>
+        <div class="project-tags">
+          <span class="project-tag">R</span>
+          <span class="project-tag">tidyverse</span>
+          <span class="project-tag">ggplot2</span>
+          <span class="project-tag">linear regression</span>
+          <span class="project-tag">Quarto</span>
+          <span class="project-tag">Git/GitHub</span>
+        </div>
+        <a href="https://github.com/Maliha-Anwar/county-health-outcomes" target="_blank" class="project-link">View on GitHub <span class="arrow">→</span></a>
+      </div>
+    </div>
+
+    <!-- Project 2 — placeholder -->
+    <div class="project-card">
+      <div class="project-color" style="background: linear-gradient(90deg, var(--sky), var(--sky-light))"></div>
+      <div class="project-body">
+        <span class="project-status status-progress">● In Progress</span>
+        <h3>Advancing Youth Leadership in Community-Level Violence Prevention</h3>
+        <p>Analyzed survey data from youth advisory boards across five CDC-funded Youth Violence Prevention Centers to identify factors that drive youth leadership. 
+          Using a sample of 151 youth across six U.S. cities, findings showed that leadership efficacy and authentic adult support—particularly recognition and receptivity to youth voice—were strongly associated with increased leadership behaviors. 
+          This work highlights the critical role of youth-adult partnerships in building effective, community-driven violence prevention strategies.</p>
+        <div class="project-tags">
+          <span class="project-tag">youth interviews</span>
+          <span class="project-tag">focus groups</span>
+          <span class="project-tag">literature review</span>
+          <span class="project-tag">qualitative analysis</span>
+          <span class="project-tag">manuscript writing</span>
+        </div>
+        <a href="#" class="project-link">Coming soon <span class="arrow">→</span></a>
+      </div>
+    </div>
+
+    <!-- Project 3 — placeholder -->
+    <div class="project-card">
+      <div class="project-color" style="background: linear-gradient(90deg, var(--terracotta), var(--terracotta-light))"></div>
+      <div class="project-body">
+        <span class="project-status status-complete">● Complete</span>
+        <h3>A Case Study of Scattered-site Illegal Dumping
+and Its Effects on Vacant Property Greening in Two U.S. Legacy Cities</h3>
+        <p>Analyzed the impact of illegal dumping on greening efforts across two U.S. legacy cities using qualitative interviews with residents and stakeholders. 
+          Identified key patterns linking physical disorder, resource constraints, and reduced community capacity. 
+          Generated insights to inform scalable, place-based interventions that support environmental health and equity.</p>
+        <div class="project-tags">
+          <span class="project-tag">community interviews</span>
+          <span class="project-tag">qualitative research</span>
+          <span class="project-tag">literature review</span>
+          <span class="project-tag">manuscript writing</span>
+        </div>
+        <a href="#" class="project-link">Coming soon <span class="arrow">→</span></a>
+      </div>
+    </div>
+
+    <!-- Project 4 — placeholder -->
+    <div class="project-card">
+      <div class="project-color" style="background: linear-gradient(90deg, var(--honey), var(--honey-light))"></div>
+      <div class="project-body">
+        <span class="project-status status-complete">● Complete</span>
+        <h3>Critical Analysis of Socio-cultural Factors and Community-Based Interventions: Reducing Child Mortality Due to Diarrheal Diseases in Pakistan</h3>
+        <p>Conducted a critical analysis of the socio-cultural, economic, and environmental factors driving child mortality due to diarrheal diseases in Pakistan. Through a systematic review of global literature, identified key barriers that limit the effectiveness of evidence-based interventions, including cultural norms, resource constraints, and gaps in community engagement. Findings highlight the importance of tailoring public health strategies to local contexts to improve intervention uptake, sustainability, and health outcomes.</p>
+        <div class="project-tags">
+          <span class="project-tag">literature review</span>
+          <span class="project-tag">systematic review</span>
+        </div>
+        <span style="font-size: 12px; color: var(--earth); font-weight: 600; font-style: italic;">MPH Thesis · The George Washington University</span>
+      </div>
+    </div>
+
+        <!-- Project 5 — TRIGGER Annual Report -->
+    <div class="project-card">
+      <div class="project-color" style="background: linear-gradient(90deg, var(--sky), var(--sky-light))"></div>
+      <div class="project-body">
+        <span class="project-status status-complete">● Complete</span>
+        <h3>TRIGGER Project Annual Performance Report</h3>
+        <p>Developed the annual performance report for the TRIGGER Project, a CDC-funded initiative focused on firearm injury prevention research. Synthesized data across multiple research activities, program milestones, and evaluation metrics into a comprehensive report for stakeholders and funders.</p>
+        <div class="project-tags">
+          <span class="project-tag">program evaluation</span>
+          <span class="project-tag">report design</span>
+          <span class="project-tag">data synthesis</span>
+          <span class="project-tag">CDC reporting</span>
+          <span class="project-tag">MI-YVPC</span>
+        </div>
+        <span style="font-size: 12px; color: var(--earth); font-weight: 600; font-style: italic;">University of Michigan · MI-YVPC</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- WRITING -->
+<section class="section" id="writing">
+  <div class="reveal">
+    <div class="section-label">Writing & publications</div>
+    <h2 class="section-title">Stories that matter</h2>
+    <p class="section-desc">
+      Quantitative research is essential for understanding patterns and trends, but it doesn't capture the full picture. Qualitative insights — the stories, experiences, and perspectives of the communities most affected — add a powerful layer of understanding that numbers alone can't provide. My work spans both spaces, and my writing includes research communications, blog series, and upcoming publications, with current work focused on youth-led violence prevention through the University of Michigan's Youth Violence Prevention Center.
+    </p>
+  </div>
+  <div class="writing-grid reveal">
+
+    <!-- Blog 1 -->
+    <div class="writing-card">
+      <div class="writing-accent"></div>
+      <div class="writing-content">
+        <div class="writing-series">Our Stories, Our Strength · Part 1 of 3</div>
+        <h3>The Story Behind Our Campaign</h3>
+        <p>Introducing "Our Stories, Our Strength" — a youth-led social media campaign created by advisory boards in Muskegon, MI and Washington, D.C. through the MI-YVPC. The campaign invites young people to anonymously share their experiences with gun violence, building empathy and solidarity while connecting peers to resources.</p>
+        <div class="writing-meta">
+          <span class="writing-tag">gun violence prevention</span>
+          <span class="writing-tag">youth leadership</span>
+          <span class="writing-tag">MI-YVPC</span>
+          <span class="writing-date">April 22, 2026</span>
+        </div>
+        <a href="https://yvpc.sph.umich.edu/our-stories-our-strength-campaign-launching-on-april-28th/" target="_blank" class="writing-link">Read on MI-YVPC Blog <span class="arrow">→</span></a>
+      </div>
+    </div>
+
+    <!-- Blog 2 -->
+    <div class="writing-card">
+      <div class="writing-accent"></div>
+      <div class="writing-content">
+        <div class="writing-series">Our Stories, Our Strength · Part 2 of 3</div>
+        <h3>Why Youth Voices Matter in Gun Violence Prevention</h3>
+        <p>Exploring why centering young people's perspectives is essential to effective gun violence prevention — and how the youth advisory boards across two cities are leading that conversation through their own words and experiences.</p>
+        <div class="writing-meta">
+          <span class="writing-tag">gun violence prevention</span>
+          <span class="writing-tag">youth voice</span>
+          <span class="writing-tag">MI-YVPC</span>
+          <span class="writing-date">April 24, 2026</span>
+        </div>
+        <a href="https://yvpc.sph.umich.edu/why-youth-voices-matter-in-gun-violence-prevention/" target="_blank" class="writing-link">Read on MI-YVPC Blog <span class="arrow">→</span></a>
+      </div>
+    </div>
+
+    <!-- Blog 3 -->
+    <div class="writing-card">
+      <div class="writing-accent"></div>
+      <div class="writing-content">
+        <div class="writing-series">Our Stories, Our Strength · Part 3 of 3</div>
+        <h3>Our Stories, Our Strength Campaign Launches Today</h3>
+        <p>After months of collaboration between youth leaders in Muskegon and Washington, D.C., the campaign goes live — inviting young people everywhere to share their stories and join a growing community built on empathy, solidarity, and action.</p>
+        <div class="writing-meta">
+          <span class="writing-tag">campaign launch</span>
+          <span class="writing-tag">youth leadership</span>
+          <span class="writing-tag">MI-YVPC</span>
+          <span class="writing-date">April 28, 2026</span>
+        </div>
+        <a href="https://yvpc.sph.umich.edu/our-stories-our-strength-campaign-launches-today/" target="_blank" class="writing-link">Read on MI-YVPC Blog <span class="arrow">→</span></a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section class="section" id="skills">
+  <div class="reveal">
+    <div class="section-label">Skills & tools</div>
+    <h2 class="section-title">What I work with</h2>
+    <p class="section-desc">
+      My toolkit is centered on R and the tidyverse ecosystem, with growing capabilities in visualization, modeling, and reproducible reporting.
+    </p>
+  </div>
+  <div class="skills-layout reveal">
+    <div class="skill-group">
+      <div class="skill-group-icon">💻</div>
+      <h3>Data & Programming</h3>
+      <div class="skill-items">
+        <span class="skill-item skill-data">R</span>
+        <span class="skill-item skill-data">tidyverse</span>
+        <span class="skill-item skill-data">ggplot2</span>
+        <span class="skill-item skill-data">dplyr</span>
+        <span class="skill-item skill-data">janitor</span>
+        <span class="skill-item skill-data">skimr</span>
+        <span class="skill-item skill-data">broom</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <div class="skill-group-icon">📈</div>
+      <h3>Analysis & Modeling</h3>
+      <div class="skill-items">
+        <span class="skill-item skill-tools">Linear Regression</span>
+        <span class="skill-item skill-tools">Correlation Analysis</span>
+        <span class="skill-item skill-tools">EDA</span>
+        <span class="skill-item skill-tools">Data Cleaning</span>
+        <span class="skill-item skill-tools">gtsummary</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <div class="skill-group-icon">🏥</div>
+      <h3>Domain Knowledge</h3>
+      <div class="skill-items">
+        <span class="skill-item skill-domain">Public Health</span>
+        <span class="skill-item skill-domain">Epidemiology</span>
+        <span class="skill-item skill-domain">Health Equity</span>
+        <span class="skill-item skill-domain">SDOH</span>
+        <span class="skill-item skill-domain">Census Data</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOBBIES -->
+<section class="section" id="hobbies">
+  <div class="reveal">
+    <div class="section-label">Beyond the data</div>
+    <h2 class="section-title">Things I enjoy</h2>
+    <p class="section-desc">
+      When I’m not immersed in research, I enjoy exploring new places, capturing moments through photography, 
+      working on arts and crafts, or unwinding with a good book or movie.
+    </p>
+  </div>
+  <div class="hobbies-grid reveal">
+    <div class="hobby-card"><span class="hobby-emoji">🍜</span><span class="hobby-text">Trying new restaurants</span></div>
+    <div class="hobby-card"><span class="hobby-emoji">📒</span><span class="hobby-text">Notion organizing</span></div>
+    <div class="hobby-card"><span class="hobby-emoji">🏙️</span><span class="hobby-text">Exploring new countries</span></div>
+    <div class="hobby-card"><span class="hobby-emoji">📚</span><span class="hobby-text">Reading</span></div>
+    <div class="hobby-card"><span class="hobby-emoji">🌿</span><span class="hobby-text">Nature walks</span></div>
+    <div class="hobby-card"><span class="hobby-emoji">☕</span><span class="hobby-text">Arts and crafts</span></div>
+    <!-- Add or change hobbies here -->
+  </div>
+</section>
+
+<!-- CONTACT -->
+<div class="reveal">
+  <section class="contact-section" id="contact">
+    <div class="section-label">Get in touch</div>
+    <h2 class="section-title">Let's connect</h2>
+    <p class="section-desc">
+      Whether you want to chat about public health data, collaborate on a project, 
+      or just say hello — I'd love to hear from you.
+    </p>
+    <div class="contact-links">
+      <a href="https://mail.google.com/mail/?view=cm&to=malihatanvir1@gmail.com" target="_blank" class="contact-btn contact-primary">
+        ✉ Email me
+      </a>
+      <a href="https://www.linkedin.com/in/maliha-anwar/" target="_blank" class="contact-btn contact-secondary">
+        💼 LinkedIn
+      </a>
+      <a href="https://github.com/Maliha-Anwar" target="_blank" class="contact-btn contact-secondary">
+        🐙 GitHub
+      </a>
+    </div>
+  </section>
+</div>
+
+<footer>
+  <p>Made with care · Maliha · 2026</p>
+</footer>
+
+<script>
+// Scroll reveal
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
+  });
+}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+// Nav scroll effect
+window.addEventListener('scroll', () => {
+  document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 20);
+});
+
+// Smooth nav click
+document.querySelectorAll('.nav-links a').forEach(a => {
+  a.addEventListener('click', (e) => {
+    e.preventDefault();
+    const target = document.querySelector(a.getAttribute('href'));
+    if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+});
+</script>
+
+</body>
+</html>
